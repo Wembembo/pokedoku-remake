@@ -1,5 +1,6 @@
 import React from "react";
 import fetchData from "./pokeApi";
+import './table.css'
 
 function Table(){
     return(
@@ -8,7 +9,7 @@ function Table(){
             <table>
                 <thead>
                     <tr>
-                        <th></th>
+                        <td></td>
                         <th>Criteria 1</th>
                         <th>Criteria 2</th>
                         <th>Criteria 3</th>

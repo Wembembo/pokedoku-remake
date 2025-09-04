@@ -9,11 +9,20 @@ async function fetchData(index){
         }
 
         const data = await response.json();
-        const pokemonSprite = data.sprites.front_default;
         const imgElement = document.getElementById(`pokemonSprite-${index}`);
-
-        imgElement.src = pokemonSprite;
-        imgElement.style.display = "block";
+        const shinyCheck = Math.floor(Math.random() * 10) + 1; // 1 in 10 chance of shiny
+        const shinyRoll = Math.floor(Math.random() * 10) + 1 // rolling for shiny to check if match
+        console.log("shiny check:", shinyCheck, "shiny roll", shinyRoll);
+        // if shinyRoll matches shinyCheck, display shiny sprite instead
+        if (shinyRoll === shinyCheck) {
+            const pokemonSprite = data.sprites.front_shiny;
+            imgElement.src = pokemonSprite;
+            imgElement.style.display = "block";
+        } else {
+            const pokemonSprite = data.sprites.front_default;
+            imgElement.src = pokemonSprite;
+            imgElement.style.display = "block";
+        }
 
     } catch(error){
         console.error(error);
