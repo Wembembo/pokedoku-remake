@@ -10,8 +10,8 @@ async function fetchData(index){
 
         const data = await response.json();
         const imgElement = document.getElementById(`pokemonSprite-${index}`);
-        const shinyCheck = Math.floor(Math.random() * 10) + 1; // 1 in 10 chance of shiny
-        const shinyRoll = Math.floor(Math.random() * 10) + 1 // rolling for shiny to check if match
+        const shinyCheck = Math.floor(Math.random() * 100) + 1; // 1 in 10 chance of shiny
+        const shinyRoll = Math.floor(Math.random() * 100) + 1 // rolling for shiny to check if match
         console.log("shiny check:", shinyCheck, "shiny roll", shinyRoll);
         // if shinyRoll matches shinyCheck, display shiny sprite instead
         if (shinyRoll === shinyCheck) {
