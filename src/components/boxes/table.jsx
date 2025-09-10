@@ -1,6 +1,14 @@
 import React from "react";
 import fetchData from "./pokeApi";
 import './table.css'
+import types from './criteria/criteria.json'
+
+function criteriaSelector(types){
+    const criteriaRoll = Math.floor(Math.random() * types.length);
+    const selection = types[criteriaRoll]
+    console.log(criteriaRoll, selection);
+    return selection.display;
+};
 
 function Table(){
     return(
@@ -10,14 +18,14 @@ function Table(){
                 <thead>
                     <tr>
                         <td></td>
-                        <th id="criteria-1">Criteria 1</th>
-                        <th id="criteria-2">Criteria 2</th>
-                        <th id="criteria-3">Criteria 3</th>
+                        <th id="criteria-1">{criteriaSelector(types.types)}</th>
+                        <th id="criteria-2">{criteriaSelector(types.types)}</th>
+                        <th id="criteria-3">{criteriaSelector(types.types)}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th id="criteria-4">Criteria 4</th>
+                    <tr class="guessRow">
+                        <th id="criteria-4" >{criteriaSelector(types.types)}</th>
                         <td>
                             <img id="pokemonSprite-0"></img><br/>
                             <input id="pokemonName-0" type="text"></input><br/>
@@ -34,8 +42,8 @@ function Table(){
                             <button onClick={() => fetchData(2)}>Submit Guess</button>
                         </td>
                     </tr>
-                    <tr>
-                    <th id="criteria-5">Criteria 5</th>
+                    <tr class="guessRow">
+                    <th id="criteria-5">{criteriaSelector(types.types)}</th>
                         <td>
                             <img id="pokemonSprite-3"></img><br/>
                             <input id="pokemonName-3" type="text"></input><br/>
@@ -52,8 +60,8 @@ function Table(){
                             <button onClick={() => fetchData(5)}>Submit Guess</button>
                         </td>
                     </tr>
-                    <tr>
-                    <th id="criteria-6">Criteria 6</th>
+                    <tr class="guessRow">
+                    <th id="criteria-6">{criteriaSelector(types.types)}</th>
                         <td>
                             <img id="pokemonSprite-6"></img><br/>
                             <input id="pokemonName-6" type="text"></input><br/>

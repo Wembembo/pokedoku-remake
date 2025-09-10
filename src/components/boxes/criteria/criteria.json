@@ -1,0 +1,22 @@
+{
+"types": [
+        {"id": "normal", "display": "Normal"},
+        {"id": "fire", "display": "Fire"},
+        {"id": "water", "display": "Water"},
+        {"id": "grass", "display": "Grass"},
+        {"id": "electric", "display": "Electric"},
+        {"id": "ice", "display": "Ice"},
+        {"id": "fighting", "display": "Fighting"},
+        {"id": "poison", "display": "Poison"},
+        {"id": "ground", "display": "Ground"},
+        {"id": "flying", "display": "Flying"},
+        {"id": "psychic", "display": "Psychic"},
+        {"id": "bug", "display": "Bug"},
+        {"id": "rock", "display": "Rock"},
+        {"id": "ghost", "display": "Ghost"},
+        {"id": "dragon", "display": "Dragon"},
+        {"id": "dark", "display": "Dark"},
+        {"id": "steel", "display": "Steel"},
+        {"id": "fairy", "display": "Fairy"}
+    ]
+}

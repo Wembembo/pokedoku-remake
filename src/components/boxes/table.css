@@ -1,8 +1,13 @@
 tr{
-    height: 75px;
+    height:50px;
 }
 td, th {
     border: 1px solid black;
     text-align: center;
     padding: 10px;
 }
+
+.guessRow{
+    height: 210px
+}
+
