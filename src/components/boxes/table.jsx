@@ -10,14 +10,14 @@ function Table(){
                 <thead>
                     <tr>
                         <td></td>
-                        <th>Criteria 1</th>
-                        <th>Criteria 2</th>
-                        <th>Criteria 3</th>
+                        <th id="criteria-1">Criteria 1</th>
+                        <th id="criteria-2">Criteria 2</th>
+                        <th id="criteria-3">Criteria 3</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>Criteria 4</th>
+                        <th id="criteria-4">Criteria 4</th>
                         <td>
                             <img id="pokemonSprite-0"></img><br/>
                             <input id="pokemonName-0" type="text"></input><br/>
@@ -35,7 +35,7 @@ function Table(){
                         </td>
                     </tr>
                     <tr>
-                    <th>Criteria 5</th>
+                    <th id="criteria-5">Criteria 5</th>
                         <td>
                             <img id="pokemonSprite-3"></img><br/>
                             <input id="pokemonName-3" type="text"></input><br/>
@@ -53,7 +53,7 @@ function Table(){
                         </td>
                     </tr>
                     <tr>
-                    <th>Criteria 6</th>
+                    <th id="criteria-6">Criteria 6</th>
                         <td>
                             <img id="pokemonSprite-6"></img><br/>
                             <input id="pokemonName-6" type="text"></input><br/>

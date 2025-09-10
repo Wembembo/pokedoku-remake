@@ -1,0 +1,8 @@
+tr{
+    height: 75px;
+}
+td, th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
