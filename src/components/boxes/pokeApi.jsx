@@ -27,5 +27,6 @@ async function fetchData(index){
     } catch(error){
         console.error(error);
     }
+    document.getElementById(`button-${index}`).classList.add("invisible");
 };
 export default fetchData;

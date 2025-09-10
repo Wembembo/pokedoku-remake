@@ -11,3 +11,6 @@ td, th {
     height: 210px
 }
 
+.invisible{
+    display: none;
+}
