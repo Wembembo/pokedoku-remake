@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import fetchData from "./pokeApi";
 import types from './criteria/criteria.json'
 import Table from "./table";
@@ -11,4 +11,4 @@ not, red, and replace the image with a pokemon egg if possible. */
     const criteriaCheck = 
     if (types.id ===)
 
-}*/
+};*/

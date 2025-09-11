@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Table from './components/boxes/table'
 import Heading from './components/heading'
+import ResetButton from './components/reset'
 
 function App() {
   const [count, setCount] = useState(0)

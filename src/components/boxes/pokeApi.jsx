@@ -7,12 +7,13 @@ async function fetchData(index){
         if(!response.ok){
             throw new Error("Could not locate resource");
         }
-
+        // definitions
         const data = await response.json();
         const imgElement = document.getElementById(`pokemonSprite-${index}`);
         const shinyCheck = Math.floor(Math.random() * 100) + 1; // 1 in 100 chance of shiny
         const shinyRoll = Math.floor(Math.random() * 100) + 1 // rolling for shiny to check if match
         console.log("shiny check:", shinyCheck, "shiny roll", shinyRoll);
+
         // if shinyRoll matches shinyCheck, display shiny sprite instead
         if (shinyRoll === shinyCheck) {
             const pokemonSprite = data.sprites.front_shiny;
@@ -23,10 +24,18 @@ async function fetchData(index){
             imgElement.src = pokemonSprite;
             imgElement.style.display = "block";
         }
-
+        //removing the button once submitted to keep things at one guess per box.
+        document.getElementById(`button-${index}`).classList.add("invisible");
+        const playerGuess = document.getElementById(`playerGuess-${index}`);
+        
+        //looping through type arrays to log pokemon types
+        data.types.forEach(typeInfo => {
+            const typeCheck = typeInfo.type.name;
+            console.log(typeCheck);
+        });
     } catch(error){
         console.error(error);
     }
-    document.getElementById(`button-${index}`).classList.add("invisible");
+
 };
 export default fetchData;
