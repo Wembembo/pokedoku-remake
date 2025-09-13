@@ -1,4 +1,7 @@
-// pokeApi.jsx
+//import criteria for checks
+import types from './criteria/criteria.json'
+
+//api fetch function.
 async function fetchData(index){
     try{ 
         const pokemonName = document.getElementById(`pokemonName-${index}`).value.toLowerCase();
@@ -32,6 +35,21 @@ async function fetchData(index){
         data.types.forEach(typeInfo => {
             const typeCheck = typeInfo.type.name;
             console.log(typeCheck);
+            return typeCheck;
+        
+
+        //criteria checks - need to get the criteria from the table headers and compare against the pokemon types
+        const criteria1 = document.getElementById("criteria-1").types.id;
+        const criteria2 = document.getElementById("criteria-2").types.id;
+        const criteria3 = document.getElementById("criteria-3").types.id;
+        const criteria4 = document.getElementById("criteria-4").types.id;
+        const criteria5 = document.getElementById("criteria-5").types.id;
+        const criteria6 = document.getElementById("criteria-6").types.id;
+
+        //cross checks
+        if (typeCheck === criteria1 && typeCheck === criteria4){
+            playerGuess-$(index).classList.add("correct");
+        };
         });
     } catch(error){
         console.error(error);

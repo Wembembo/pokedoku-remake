@@ -14,3 +14,7 @@ td, th {
 .invisible{
     display: none;
 }
+
+.correct{
+    background-color: lightgreen;
+}
