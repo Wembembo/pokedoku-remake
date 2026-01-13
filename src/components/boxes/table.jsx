@@ -4,7 +4,7 @@ import './table.css'
 import typesData from './criteria/criteria.json'
 
 function Table() {
-    // Storing the 6 picked types in a variable named 'criteria'
+    // pick six random criteria from the typesData
     const [criteria] = useState(() => {
         const shuffled = [...typesData.types].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, 6); 
@@ -14,9 +14,9 @@ function Table() {
         const startIndex = rowNum * 3; 
         const rowCriteriaId = rowNum + 4; 
 
+        //table rendering logic
         return (
             <tr key={rowNum} className="guessRow">
-                {/* Accessing criteria by the full name now */}
                 <th id={`criteria-${rowCriteriaId}`} data-type={criteria[rowNum + 3].id}>
                     {criteria[rowNum + 3].display}
                 </th>
@@ -43,7 +43,6 @@ function Table() {
                 <thead>
                     <tr>
                         <td></td>
-                        {/* Updated from c[0] to criteria[0] */}
                         <th id="criteria-1" data-type={criteria[0].id}>{criteria[0].display}</th>
                         <th id="criteria-2" data-type={criteria[1].id}>{criteria[1].display}</th>
                         <th id="criteria-3" data-type={criteria[2].id}>{criteria[2].display}</th>

@@ -13,14 +13,14 @@ async function fetchData(index) {
         const data = await response.json();
         const pokemonTypes = data.types.map(t => t.type.name); 
 
-        // 1. Determine criteria
+        // set criteria
         const colId = (index % 3) + 1; 
         const rowId = Math.floor(index / 3) + 4; 
 
         const colCriteria = document.getElementById(`criteria-${colId}`).getAttribute('data-type');
         const rowCriteria = document.getElementById(`criteria-${rowId}`).getAttribute('data-type');
 
-        // 2. Logic for Success or Failure
+        // checks for matches based on user input and the criteria picked
         const matchesCol = pokemonTypes.includes(colCriteria);
         const matchesRow = pokemonTypes.includes(rowCriteria);
 
@@ -30,11 +30,11 @@ async function fetchData(index) {
         if (matchesCol && matchesRow) {
             cell.classList.add("correct");
 
-            // --- SHINY ROLL LOGIC ---
+            // --- shiny checks ---
             const shinyCheck = Math.floor(Math.random() * 100) + 1;
             const shinyRoll = Math.floor(Math.random() * 100) + 1;
             
-            // This logs the numbers so you can see if you hit that 1/100 chance
+            //shiny check check
             console.log(`Cell ${index} Shiny Check:`, shinyCheck, "Shiny Roll:", shinyRoll);
             
             const spriteUrl = (shinyRoll === shinyCheck) 

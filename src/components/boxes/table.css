@@ -1,13 +1,11 @@
-/* table.css */
-
-/* 1. Prevent the table from shifting */
+/* preventing the table from shifting */
 table {
     border-collapse: collapse;
     margin: 20px auto;
     table-layout: fixed; /* Forces the browser to respect your widths */
 }
 
-/* 2. Fix box sizes */
+/*making table boxes maintain size */
 td {
     width: 140px;
     height: 180px;
@@ -25,7 +23,7 @@ th {
     color: #444;
 }
 
-/* 3. The "Reserved Space" for the Sprite */
+/* sprite container*/
 .sprite-container {
     height: 100px; /* PokeAPI sprites are roughly 96px */
     width: 100px;
@@ -40,7 +38,7 @@ img {
     height: auto;
 }
 
-/* 4. Feedback Colors (triggered in pokeapi.jsx) */
+/*correct or incorrect responses */
 .correct {
     background-color: #a3e635 !important; /* Pokemon Green */
 }
@@ -49,7 +47,7 @@ img {
     background-color: #fb7185 !important; /* Pokemon Red */
 }
 
-/* 5. Clean up inputs and buttons */
+/* button stuff */
 input {
     width: 90%;
     margin-top: 5px;
@@ -58,6 +56,7 @@ input {
     border-radius: 4px;
 }
 
+/* invisible class, mostly for the button after submitting a guess */
 .invisible {
-    display: none; /* Completely removes the button after guess */
+    display: none; 
 }
