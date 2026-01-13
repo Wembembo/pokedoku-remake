@@ -60,3 +60,11 @@ input {
 .invisible {
     display: none; 
 }
+
+.loading {
+    text-align: center;
+    font-family: sans-serif;
+    margin-top: 50px;
+    font-size: 1.2rem;
+    color: #555;
+}

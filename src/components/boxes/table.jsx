@@ -1,20 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import fetchData from "./pokeApi";
-import './table.css'
-import typesData from './criteria/criteria.json'
+import './table.css';
 
 function Table() {
-    // pick six random criteria from the typesData
-    const [criteria] = useState(() => {
-        const shuffled = [...typesData.types].sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, 6); 
-    });
+    const [criteria, setCriteria] = useState(null);
 
+    useEffect(() => {
+        async function generateValidGrid() {
+            const validTypes = [];
+            const seenIds = new Set();
+
+            // 6 unique types (3 for cols, 3 for rows)
+            while (validTypes.length < 6) {
+                // picking a random Pokemon from Gen 1-9 (1 to 1010) for validation purposes
+                const randomId = Math.floor(Math.random() * 1010) + 1;
+                
+                try {
+                    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
+                    const data = await response.json();
+
+                    // checking the types selected to see if any pokemon exist with these types
+                    if (data.types.length === 2) {
+                        data.types.forEach(typeInfo => {
+                            const typeName = typeInfo.type.name;
+                            
+                            // Add if it's a new unique type for this session
+                            if (!seenIds.has(typeName) && validTypes.length < 6) {
+                                seenIds.add(typeName);
+                                validTypes.push({
+                                    id: typeName,
+                                    display: typeName.charAt(0).toUpperCase() + typeName.slice(1)
+                                });
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error fetching anchor Pokemon:", error);
+                }
+            }
+            setCriteria(validTypes);
+        }
+
+        generateValidGrid();
+    }, []);
+
+    // loading state
+    if (!criteria) {
+        return <div className="loading">Generating valid Pokemon grid...</div>;
+    }
+
+    //table render logic
     const renderRow = (rowNum) => {
         const startIndex = rowNum * 3; 
         const rowCriteriaId = rowNum + 4; 
 
-        //table rendering logic
         return (
             <tr key={rowNum} className="guessRow">
                 <th id={`criteria-${rowCriteriaId}`} data-type={criteria[rowNum + 3].id}>
