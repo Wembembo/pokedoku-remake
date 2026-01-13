@@ -1,59 +1,61 @@
-//import criteria for checks
-import types from './criteria/criteria.json'
+import './pokeapi.css'
 
-//api fetch function.
-async function fetchData(index){
-    try{ 
+async function fetchData(index) {
+    try {
         const pokemonName = document.getElementById(`pokemonName-${index}`).value.toLowerCase();
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-        
-        if(!response.ok){
-            throw new Error("Could not locate resource");
-        }
-        // definitions
-        const data = await response.json();
-        const imgElement = document.getElementById(`pokemonSprite-${index}`);
-        const shinyCheck = Math.floor(Math.random() * 100) + 1; // 1 in 100 chance of shiny
-        const shinyRoll = Math.floor(Math.random() * 100) + 1 // rolling for shiny to check if match
-        console.log("shiny check:", shinyCheck, "shiny roll", shinyRoll);
 
-        // if shinyRoll matches shinyCheck, display shiny sprite instead
-        if (shinyRoll === shinyCheck) {
-            const pokemonSprite = data.sprites.front_shiny;
-            imgElement.src = pokemonSprite;
+        if (!response.ok) {
+            window.alert("Pokemon not found!");
+            throw new Error("Resource not found");
+        }
+
+        const data = await response.json();
+        const pokemonTypes = data.types.map(t => t.type.name); 
+
+        // 1. Determine criteria
+        const colId = (index % 3) + 1; 
+        const rowId = Math.floor(index / 3) + 4; 
+
+        const colCriteria = document.getElementById(`criteria-${colId}`).getAttribute('data-type');
+        const rowCriteria = document.getElementById(`criteria-${rowId}`).getAttribute('data-type');
+
+        // 2. Logic for Success or Failure
+        const matchesCol = pokemonTypes.includes(colCriteria);
+        const matchesRow = pokemonTypes.includes(rowCriteria);
+
+        const cell = document.getElementById(`playerGuess-${index}`);
+        const imgElement = document.getElementById(`pokemonSprite-${index}`);
+        
+        if (matchesCol && matchesRow) {
+            cell.classList.add("correct");
+
+            // --- SHINY ROLL LOGIC ---
+            const shinyCheck = Math.floor(Math.random() * 100) + 1;
+            const shinyRoll = Math.floor(Math.random() * 100) + 1;
+            
+            // This logs the numbers so you can see if you hit that 1/100 chance
+            console.log(`Cell ${index} Shiny Check:`, shinyCheck, "Shiny Roll:", shinyRoll);
+            
+            const spriteUrl = (shinyRoll === shinyCheck) 
+                ? data.sprites.front_shiny 
+                : data.sprites.front_default;
+            
+            if (shinyRoll === shinyCheck) console.log("✨ SHINY FOUND! ✨");
+            
+            imgElement.src = spriteUrl;
             imgElement.style.display = "block";
         } else {
-            const pokemonSprite = data.sprites.front_default;
-            imgElement.src = pokemonSprite;
+            cell.classList.add("incorrect");
+            imgElement.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-egg.png";
             imgElement.style.display = "block";
         }
-        //removing the button once submitted to keep things at one guess per box.
+
         document.getElementById(`button-${index}`).classList.add("invisible");
-        const playerGuess = document.getElementById(`playerGuess-${index}`);
-        
-        //looping through type arrays to log pokemon types
-        data.types.forEach(typeInfo => {
-            const typeCheck = typeInfo.type.name;
-            console.log(typeCheck);
-            return typeCheck;
-        
 
-        //criteria checks - need to get the criteria from the table headers and compare against the pokemon types
-        const criteria1 = document.getElementById("criteria-1").types.id;
-        const criteria2 = document.getElementById("criteria-2").types.id;
-        const criteria3 = document.getElementById("criteria-3").types.id;
-        const criteria4 = document.getElementById("criteria-4").types.id;
-        const criteria5 = document.getElementById("criteria-5").types.id;
-        const criteria6 = document.getElementById("criteria-6").types.id;
-
-        //cross checks
-        if (typeCheck === criteria1 && typeCheck === criteria4){
-            playerGuess-$(index).classList.add("correct");
-        };
-        });
-    } catch(error){
+    } catch (error) {
         console.error(error);
     }
+}
 
-};
 export default fetchData;
