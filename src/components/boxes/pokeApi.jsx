@@ -41,8 +41,10 @@ async function fetchData(index) {
                 ? data.sprites.front_shiny 
                 : data.sprites.front_default;
             
-            if (shinyRoll === shinyCheck) console.log("✨ SHINY FOUND! ✨");
-            
+            if (shinyRoll === shinyCheck) {console.log("✨ SHINY FOUND! ✨");
+            cell.classList.add("shiny-shimmer");
+            }
+
             imgElement.src = spriteUrl;
             imgElement.style.display = "block";
         } else {
